@@ -9,10 +9,10 @@ public class nReinas {
 	 * Usando otro algoritmo que mas adelante colgare se puede resolver mas reinas en un tiempo menor
 	 * para cualquier duda contacta con tutoinformatica2013@gmail.com
 	 */
-	
+
 	static final int nReinas = 4;
 	static int numeroSoluciones = 0;
-	
+
 	public static void inicializarTablero(int [][]solucion,int valor){
 		for(int i = 0;i < nReinas ; i++)
 			for(int j = 0; j < nReinas ; j++)solucion[i][j] = valor; 
@@ -26,7 +26,7 @@ public class nReinas {
 		}
 	}
 	public static boolean mismaDiagonal(int [][] solucion,int fila , int columna){
-		
+
 		for(int i = 0;i < nReinas ; i++){
 			for(int j = 0; j < nReinas ; j++){
 				if(solucion[i][j] != 0 ){
@@ -54,9 +54,9 @@ public class nReinas {
 		if(mismaDiagonal(solucion, fila, columna))return false;
 		return true;
 	}
-	
+
 	public static boolean BacktrackingTodasSoluciones(int[][] solucion , int etapa){
-		
+
 		if(etapa == nReinas){
 			numeroSoluciones++;
 			System.out.println("solucion numero : "+numeroSoluciones+"\n");
@@ -68,7 +68,7 @@ public class nReinas {
 				if(cumpleRestricciones(solucion,etapa,columna)){
 					solucion[etapa][columna] = etapa+1;
 					boolean exito= BacktrackingTodasSoluciones(solucion, etapa+1);
-					
+
 					if(exito)return true;
 					else solucion[etapa][columna] = 0;
 				}
@@ -76,18 +76,18 @@ public class nReinas {
 		}
 		return false;
 	}
-	
+
 	public static void main(String args[]){
-		
+
 		int [][] solucion = new int[nReinas][nReinas];
 		inicializarTablero(solucion, 0);
 		BacktrackingTodasSoluciones(solucion, 0);
-		System.out.println("se han encontrado un total de : "+numeroSoluciones);
-		
-		
-		
-		
+		System.out.println("se han encontrado un total de : "+numeroSoluciones + "soluciones diferentes");
+
+
+
+
 	}
-	
-	
+
+
 }
