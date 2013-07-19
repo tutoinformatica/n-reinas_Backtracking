@@ -1,8 +1,3 @@
-
-
-
-
-
 public class nReinas {
 
 	/*
@@ -10,12 +5,13 @@ public class nReinas {
 	 * nReinas -> especifica el numero de reinas que queremos colocar
 	 * etapa -> fila en la que se encuentra en  cada momento el algoritmo hay que 
 	 * inicializar a 0
+	 * para cualquier duda enviar un mail a  tutoinformatica2013@gmail.com
 	 */
 
 
-	
-	static final int nReinas = 4;
-	
+
+	static final int nReinas = 14;
+
 	public static void inicializarTablero(int [][]solucion,int valor){
 		for(int i = 0;i < nReinas ; i++)
 			for(int j = 0; j < nReinas ; j++)solucion[i][j] = valor; 
@@ -23,13 +19,14 @@ public class nReinas {
 	public static void mostrarTablero(int [][]solucion){
 		for(int i = 0;i < nReinas ; i++){
 			for(int j = 0; j < nReinas ; j++){
-				System.out.print(solucion[i][j]+"  "); 
+				if(solucion[i][j] != 0)System.out.print("Q"+"   "); 
+				else System.out.print("*"+"   "); 
 			}
 			System.out.println();
 		}
 	}
 	public static boolean mismaDiagonal(int [][] solucion,int fila , int columna){
-		
+
 		for(int i = 0;i < nReinas ; i++){
 			for(int j = 0; j < nReinas ; j++){
 				if(solucion[i][j] != 0 ){
@@ -59,6 +56,7 @@ public class nReinas {
 	}
 	public static boolean BacktrackingUnaSolucion(int[][]solucion , int etapa){
 		if(etapa == nReinas){
+			System.out.println("una posible solucion es : \n");
 			mostrarTablero(solucion);
 			return true;
 		}
@@ -66,7 +64,7 @@ public class nReinas {
 				if(cumpleRestricciones(solucion,etapa,columna)){
 					solucion[etapa][columna] = etapa+1;
 					boolean exito= BacktrackingUnaSolucion(solucion, etapa+1);
-					
+
 					if(exito)return true;
 					else solucion[etapa][columna] = 0;
 				}
@@ -74,8 +72,9 @@ public class nReinas {
 		return false;
 	}
 	public static boolean BacktrackingTodasSoluciones(int[][] solucion , int etapa){
-		
+
 		if(etapa == nReinas){
+			System.out.println("una posible solucion es: ");
 			mostrarTablero(solucion);
 			System.out.println("\n");
 		}
@@ -84,7 +83,7 @@ public class nReinas {
 				if(cumpleRestricciones(solucion,etapa,columna)){
 					solucion[etapa][columna] = etapa+1;
 					boolean exito= BacktrackingTodasSoluciones(solucion, etapa+1);
-					
+
 					if(exito)return true;
 					else solucion[etapa][columna] = 0;
 				}
@@ -92,14 +91,14 @@ public class nReinas {
 		}
 		return false;
 	}
-	
+
 	public static void main(String args[]){
-		
+
 		int [][] solucion = new int[nReinas][nReinas];
 		inicializarTablero(solucion, 0);
 		BacktrackingUnaSolucion(solucion, 0);
-		
+
 	}
-	
-	
+
+
 }
