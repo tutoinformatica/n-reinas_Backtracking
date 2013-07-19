@@ -1,4 +1,3 @@
-
 public class nReinas {
 
 	/*
@@ -20,7 +19,8 @@ public class nReinas {
 	public static void mostrarTablero(int [][]solucion){
 		for(int i = 0;i < nReinas ; i++){
 			for(int j = 0; j < nReinas ; j++){
-				System.out.print(solucion[i][j]+"  "); 
+				if(solucion[i][j] != 0)System.out.print("Q"+"   "); 
+				else System.out.print("*"+"   "); 
 			}
 			System.out.println();
 		}
